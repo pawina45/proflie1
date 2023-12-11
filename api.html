@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ls Pin</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="#home" class="w3-bar-item w3-button"><b>Pin</b> Pawna</a>
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="index.html" class="w3-bar-item w3-button">index</a>
+      <a href="java.html" class="w3-bar-item w3-button">java</a>
+      <a href="api.html" class="w3-bar-item w3-button">api</a>
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="w3-content w3-padding-64 w3-margin-top" style="max-width:1564px">
+
+<h1>API</h1>
+
+<br>
+<br>
+<br>
+<br>
+<hr>
+<br>
+
+<h2>Enter Your Name</h2>
+
+<script>
+    // Function to display the greeting
+    function displayGreeting() {
+        // Get the entered name from the input field
+        var userName = document.getElementById('nameInput').value;
+
+        // Display the greeting
+        var greeting = document.getElementById('greeting');
+        greeting.innerHTML = 'Hello, ' + userName + '!';
+    }
+</script>
+
+<label for="nameInput">Name:</label>
+<input type="text" id="nameInput" />
+
+<button onclick="displayGreeting()">Submit</button>
+
+<p id="greeting"></p>
+<br>
+<br>
+<br>
+<br>
+<hr>
+<br>
+
+<h2>Future Prediction</h2>
+
+<script>
+    function predictFuture() {
+        // Array of fictional predictions
+        const predictions = [
+            "You will find unexpected joy today.",
+            "A new opportunity will come your way soon.",
+            "You will meet someone who will change your life.",
+            "Good fortune is on the horizon.",
+            "Take a leap of faith; it will pay off."
+        ];
+
+        // Get a random prediction
+        const randomIndex = Math.floor(Math.random() * predictions.length);
+        const randomPrediction = predictions[randomIndex];
+
+        // Display the prediction on the webpage
+        document.getElementById('prediction').innerHTML = 'Prediction: ' + randomPrediction;
+    }
+</script>
+
+<button onclick="predictFuture()">Predict My Future</button>
+
+<div id="prediction"></div>
+<!-- End page content -->
+
+<br>
+<br>
+<br>
+<br>
+<hr>
+<br>
+
+  <script src="script.js"></script>
+  <div >
+    <h1>Random img</h1>
+    <img id="randomImage" src="" alt="Random Image">
+    <br><br>
+    <button id="generateButton">Random Image</button>
+    <hr>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const randomImageButton = document.getElementById('generateButton');
+    const randomImageElement = document.getElementById('randomImage');
+
+    function getRandomImage() {
+      const apiUrl = 'https://picsum.photos/400/400';
+
+      const randomImageUrl = `${apiUrl}?${Math.random()}`;
+
+      randomImageElement.src = randomImageUrl;
+    }
+
+    getRandomImage();
+
+    randomImageButton.addEventListener('click', getRandomImage);
+  });
+  </script>
+
+<!-- <br>
+<br>
+<br>
+<br>
+<hr>
+<br> -->
+
+<h2 class="java-h2">Coinbase API</h2>
+<div id="pricesContainer">
+  <div id="prices"></div>
+  <div id="lastUpdateTime"></div>
+</div>
+
+<script>
+  // Paste your JavaScript code here
+
+  function fetchPrices() {
+    var now = new Date();
+    var currentTime = now.toLocaleTimeString();
+
+    fetch('https://api.coinbase.com/v2/exchange-rates?currency=USDT')
+        .then(response => response.json())
+        .then(data => {
+            displayPrices(data);
+            displayLastUpdateTime(currentTime);
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            alert('Error fetching data. Please try again.');
+        });
+  }
+
+  function displayPrices(data) {
+    var pricesDiv = document.getElementById('prices');
+    var rates = data.data.rates;
+
+    var currencies = ['1INCH', 'AAVE', 'ABT', 'ACH', 'ACS', 'ADA', 'AED', 'BTC', 'ETH'];
+    var pricesHtml = '<p>1 USDT can buy : </p><ul>';
+
+    currencies.forEach(currency => {
+        if (rates[currency]) {
+            pricesHtml += `<li>${currency} : ${rates[currency]}</li>`;
+        } else {
+            pricesHtml += `<li>${currency} : N/A</li>`;
+        }
+    });
+
+    pricesHtml += '</ul>';
+    pricesDiv.innerHTML = pricesHtml;
+  }
+
+  function displayLastUpdateTime(currentTime) {
+    var updateTimeDiv = document.getElementById('lastUpdateTime');
+    updateTimeDiv.innerHTML = `<p>Last Update Time : ${currentTime}</p>`;
+  }
+
+  fetchPrices();
+
+  setInterval(fetchPrices, 3000);
+</script>
+
+
+<br>
+<br>
+<hr>
+<br>
+
+<script>
+  //document.getElementById("demo").innerHTML = "Hello World";
+    // const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+</script>
+
+<form 
+  method="POST" 
+  action="https://script.google.com/macros/s/AKfycbz2mtv0sQ-KiIRiqe5p5Rks9tvDSA8bPVmYH8mr3e304qrDvC5mizYpHKMLKPaaWFs1/exec">
+  <input name="Email" type="email" placeholder="Email" required>
+  <input name="Name" type="text" placeholder="Name" required>
+  <input name="Topic" type="text" placeholder="Topic" required>
+  <button type="submit">Send</button>
+</form>
+<br>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRPuXRl3pZsU9EDeK1rY2mMMSWLSVpKZwAEpyjgSvDWlZl-m1i7zNShOW7LwzksQ3z8VEzvl_o1rTYa/pubhtml?widget=true&amp;headers=false" style="height:500px; width: 1500px;"></iframe>></iframe>
+
+
+
+  
+
+</div>
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-16">
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">Pawina Lamun</a></p>
+</footer>
+
+</body>
+</html>
